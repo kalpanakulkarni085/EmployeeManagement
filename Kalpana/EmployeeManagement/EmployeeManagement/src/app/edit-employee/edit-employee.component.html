@@ -1,0 +1,53 @@
+<h2 style="margin-left: 38%;">Edit Employee</h2>
+
+<form (submit)="updateEmployee(empeditForm.value)" #empeditForm="ngForm">
+
+  <input type="hidden" name="id" [ngModel]="employeecurrentdata?.id" required>
+
+  <label>Name:</label>
+  <input type="text" [ngModel]="employeecurrentdata?.name " (ngModelChange)="employeecurrentdata.name = $event"
+    name="Name" required><br>
+
+  <label>Employee Code:</label>
+  <input type="text" [ngModel]="employeecurrentdata?.employeeCode "
+    (ngModelChange)="employeecurrentdata.employeeCode = $event" name="EmployeeCode" required><br>
+
+  
+  <input type="hidden" [ngModel]="employeecurrentdata?.gender " (ngModelChange)="employeecurrentdata.gender = $event"
+    name="Gender" ><br>
+
+  
+  <input type="hidden" [ngModel]="employeecurrentdata?.birthdate | date: 'yyyy-MM-dd' "
+    (ngModelChange)="employeecurrentdata.birthdate = $event" name="Birthdate"><br>
+
+  <label>Joining date</label>
+  <input type="date" [ngModel]="employeecurrentdata?.joiningDate | date: 'yyyy-MM-dd' "
+    (ngModelChange)="employeecurrentdata.joiningDate = $event" name="JoiningDate"><br>
+
+  <label>Designation</label><br>
+  <select [ngModel]="employeecurrentdata?.designation" (ngModelChange)="employeecurrentdata.designation = $event"
+    name="Designation" required>
+    <option value="">Select Designation</option>
+    <option *ngFor="let d of designation" [ngValue]="d.name">{{d.name}}</option>
+  </select><br>
+
+  <label>Department</label><br>
+  <select [ngModel]="employeecurrentdata?.department" (ngModelChange)="employeecurrentdata.department = $event"
+    name="Department" required>
+    <option value="">Select Department</option>
+    <option *ngFor="let de of department" [ngValue]="de.name">{{de.name}}</option>
+  </select><br>
+
+  
+  <input type="hidden" [ngModel]="employeecurrentdata?.address " (ngModelChange)="employeecurrentdata.address = $event"
+    name="Address" required><br>
+
+  <label>
+    <input type="checkbox" [ngModel]="employeecurrentdata?.isActive "
+      (ngModelChange)="employeecurrentdata.isActive = $event" name="isActive">
+    IsActive
+  </label><br>
+
+  <button type="submit">Update</button>
+  <button routerLink="/Home" class="router-link-button">Cancel</button>
+</form>
